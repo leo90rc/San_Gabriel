@@ -3,7 +3,8 @@ from PIL import Image
 import os, sys
 import pandas as pd
 import json
-
+import pymysql
+from sqlalchemy import create_engine
 
 
 # Haz que se pueda importar correctamente estas funciones que están en la carpeta utils/
@@ -23,7 +24,7 @@ sys.path.append(totum_revol_path)
 
 
 menu = st.sidebar.selectbox('Menu:',
-            options=["No selected", "Load Image", "Map", "API", "MySQL", "Machine Learning"])
+            options=["No selected", "Load Image", "Map", "API", "Australia Fire", "Machine Learning"])
 
 if menu == "No selected":
     # Pon el título del proyecto que está en el archivo "config.json" en /config
@@ -59,6 +60,8 @@ if menu == "API":
 
 if menu == "Australia Fire":
     """6"""
+    st.title("Fire Table")
+    
 
     # 1. Conecta a la BBDD
     # 2. Obtén, a partir de sentencias SQL (no pandas), la información de las tablas que empiezan por 'fire_archive*' (join)
@@ -67,6 +70,6 @@ if menu == "Australia Fire":
     # 5. Obtén la información de la tabla 'fire_nrt_M6_96619' y utiliza el mejor modelo para predecir la columna target de esos datos. 
     # 6. Usando SQL (no pandas) añade una columna nueva en la tabla 'fire_nrt_M6_96619' con el nombre 'fire_type_EL-ID-DE-TU-GRUPO'
     # 7. Muestra por pantalla en Streamlit la tabla completa (X e y)
-    pass
+    
 
 

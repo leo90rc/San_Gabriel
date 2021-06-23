@@ -27,4 +27,9 @@ BD_NAME = json_configbd["BD_NAME"]
 PORT = json_configbd["PORT"]
 
 mysql_db = MySQL(IP_DNS=IP_DNS, USER=USER, PASSWORD=PASSWORD, BD_NAME=BD_NAME, PORT=PORT)
-mysql_db.connect()
+conn = mysql_db.connect()
+
+select_sql = """SELECT * FROM australia_fires.fire_archive_M6_96619"""
+select_result = mysql_db.execute_get_sql(sql=select_sql)
+
+df = pd.read_sql('SELECT * FROM australia_fires.fire_archive_M6_96619', con=conn)
